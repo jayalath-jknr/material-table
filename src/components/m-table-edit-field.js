@@ -33,9 +33,12 @@ class MTableEditField extends React.Component {
   renderLookupField() {
     const { helperText, error, ...props } = this.getProps();
     return (
-      <FormControl error={Boolean(error)}>
+      <FormControl fullWidth error={Boolean(error)}>
+        <InputLabel value={this.props.columnDef.title}></InputLabel>
         <Select
           {...props}
+          variant="outlined" 
+          label={this.props.columnDef.title} 
           value={this.props.value === undefined ? "" : this.props.value}
           onChange={(event) => this.props.onChange(event.target.value)}
           style={{
@@ -158,6 +161,7 @@ class MTableEditField extends React.Component {
   renderTextField() {
     return (
       <TextField
+        variant="outlined" //varient changed
         {...this.getProps()}
         fullWidth
         style={
@@ -179,6 +183,9 @@ class MTableEditField extends React.Component {
           style: {
             fontSize: 13,
           },
+        }}
+        InputLabelProps={{
+          shrink :true
         }}
         inputProps={{
           "aria-label": this.props.columnDef.title,
